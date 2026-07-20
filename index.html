@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
   :root{
     --ink:#0B3A47;
@@ -458,6 +460,15 @@
     <div class="note"><b>7月メモ：</b>椿の見頃は1〜3月なので今回は時期外（夏は海・温泉・三原山がメイン）。店は早じまい＆現金中心なので、ランチ・夕食は時間と支払い方法に注意。コンビニなし・24時間自販機「メルシー」が元町／波浮に。三原山は風対策を忘れずに。</div>
   </section>
 
+  <!-- ============ MAP ============ -->
+  <section>
+    <div class="sec-head"><span class="no">5.5</span><h2>観光スポット MAP</h2><span class="en">SPOTS MAP</span></div>
+    <div id="map" style="width:100%;height:400px;border-radius:12px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.1)"></div>
+    <div class="card" style="font-size:13px">
+      <p>元町港を起点に、日曜フリーの黄金ルート：三原山 → 地層大切断面 → 波浮港 → 動物園 → 浜の湯。赤いマーカーは主要スポット、水色は食事・温泉。タップして詳細を確認できます。</p>
+    </div>
+  </section>
+
   <!-- ============ PACKING ============ -->
   <section>
     <div class="sec-head"><span class="no">6</span><h2>持ち物</h2><span class="en">PACKING</span></div>
@@ -549,6 +560,40 @@
   </div>
 
 </div>
+<script>
+// Initialize Leaflet map
+if(document.getElementById('map')){
+  const map = L.map('map').setView([34.7400, 139.3900], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+  
+  // すべてのスポット（絵文字付き）
+  const allSpots = [
+    {name:'元町港',lat:34.7519,lng:139.3525,emoji:'⛴️',desc:'到着地点'},
+    {name:'三原山',lat:34.7244,lng:139.3947,emoji:'🌋',desc:'標高758m・お鉢めぐり'},
+    {name:'地層大切断面',lat:34.7024,lng:139.3746,emoji:'🎨',desc:'バウムクーヘン柄の地層'},
+    {name:'波浮港',lat:34.6972,lng:139.4440,emoji:'🏘️',desc:'ノスタルジックな港町'},
+    {name:'泉津の切通し',lat:34.7806,lng:139.4192,emoji:'📸',desc:'巨木の階段・映えスポット'},
+    {name:'大島公園動物園',lat:34.7607,lng:139.4352,emoji:'🐾',desc:'入園無料・レッサーパンダ'},
+    {name:'裏砂漠',lat:34.7305,lng:139.4066,emoji:'🏜️',desc:'日本唯一の砂漠'},
+    {name:'野田浜/Buddy\'s Bell',lat:34.7965,lng:139.3608,emoji:'🔔',desc:'夕日スポット'},
+    {name:'浜の湯',lat:34.7545,lng:139.3519,emoji:'♨️',desc:'絶景露天（水着必須）'},
+    {name:'寿し光',lat:34.7508,lng:139.3537,emoji:'🍣',desc:'日18:00予約済'}
+  ];
+  
+  // 絵文字ピンを作成
+  allSpots.forEach(s=>{
+    const html=`<div style="background:#fff;border:2px solid #12768A;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 2px 6px rgba(0,0,0,.25);cursor:pointer">${s.emoji}</div>`;
+    const popupHtml=`<b>${s.emoji} ${s.name}</b><br><small>${s.desc}</small><br><a href="https://www.google.com/maps/search/${encodeURIComponent(s.name + ' 伊豆大島')}" target="_blank" style="color:#12768A;text-decoration:none;font-weight:700;font-size:12px">🔍 Googleで見る →</a>`;
+    L.marker([s.lat,s.lng],{icon:L.divIcon({html,className:'',iconSize:[48,48],iconAnchor:[24,48]})})
+      .bindPopup(popupHtml,{maxWidth:200})
+      .addTo(map);
+  });
+}
+</script>
+
 <script>
 (function(){
   const MEMBERS=["みずき","のぞみ","そう"];
