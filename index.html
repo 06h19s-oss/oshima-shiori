@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊豆大島 旅のしおり 2026.7.25-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B3A47;
+    --sea:#12768A;
+    --sea-deep:#0E5566;
+    --sand:#FBF6EA;
+    --paper:#FDFBF3;
+    --ember:#E8623C;
+    --ember-soft:#F4E2D9;
+    --sun:#F2B23E;
+    --foam:#DCEDEA;
+    --text:#20383F;
+    --muted:#62787F;
+    --line:#E4DDCB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Zen Kaku Gothic New",system-ui,sans-serif;
+    color:var(--text);
+    background:var(--paper);
+    line-height:1.75;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px 64px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    margin:0 -18px 30px;
+    padding:52px 26px 0;
+    background:linear-gradient(180deg,#0B3A47 0%,#12768A 62%,#1B8C9E 100%);
+    color:#fff;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero .sun{
+    position:absolute;top:34px;left:50%;transform:translateX(-50%);
+    width:74px;height:74px;border-radius:50%;
+    background:radial-gradient(circle at 50% 45%,#FFE39A,var(--sun));
+    box-shadow:0 0 46px rgba(242,178,62,.55);
+    z-index:0;
+  }
+  .hero-eyebrow{
+    position:relative;z-index:2;
+    font-family:"Zen Maru Gothic";font-weight:700;
+    letter-spacing:.42em;font-size:12px;
+    color:#BEE7EC;margin-bottom:14px;padding-left:.42em;
+  }
+  .hero h1{
+    position:relative;z-index:2;
+    font-family:"Zen Maru Gothic";font-weight:900;
+    font-size:clamp(38px,10vw,58px);line-height:1.12;
+    text-shadow:0 3px 22px rgba(0,0,0,.22);
+  }
+  .hero h1 .sub{display:block;font-size:.42em;letter-spacing:.34em;font-weight:700;margin-top:12px;color:#EAF6F6}
+  .hero-dates{
+    position:relative;z-index:2;margin-top:20px;
+    display:inline-flex;flex-wrap:wrap;gap:8px 12px;justify-content:center;
+    font-family:"Zen Maru Gothic";font-weight:700;
+  }
+  .hero-dates .pill{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);
+    padding:6px 15px;border-radius:999px;font-size:14px;backdrop-filter:blur(2px);
+  }
+  .hero-dates .pill.ember{background:var(--ember);border-color:var(--ember)}
+  .members{
+    position:relative;z-index:2;margin-top:22px;
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  }
+  .members .m{
+    background:rgba(255,255,255,.94);color:var(--ink);
+    padding:7px 4px;border-radius:14px;width:96px;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+  }
+  .members .m .name{font-family:"Zen Maru Gothic";font-weight:900;font-size:16px;line-height:1.3}
+  .members .m .role{font-size:10.5px;color:var(--muted);letter-spacing:.08em}
+  /* island + wave */
+  .scape{position:relative;z-index:1;display:block;width:calc(100% + 52px);margin:26px -26px -1px;}
+  .scape svg{display:block;width:100%;height:auto}
+
+  /* ---------- SECTION ---------- */
+  section{margin-top:34px}
+  .sec-head{display:flex;align-items:baseline;gap:11px;margin-bottom:16px}
+  .sec-head .no{
+    font-family:"Zen Maru Gothic";font-weight:900;font-size:13px;
+    color:#fff;background:var(--sea);width:26px;height:26px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;flex:none;transform:translateY(-2px);
+  }
+  .sec-head h2{font-family:"Zen Maru Gothic";font-weight:900;font-size:22px;color:var(--ink);letter-spacing:.02em}
+  .sec-head .en{font-size:11px;letter-spacing:.22em;color:var(--muted);font-weight:700;margin-left:auto;transform:translateY(-4px)}
+
+  /* ---------- TIMELINE ---------- */
+  .day{position:relative;margin-bottom:22px}
+  .day-tab{
+    display:inline-flex;align-items:center;gap:11px;
+    background:var(--ember);color:#fff;
+    padding:8px 18px 8px 12px;border-radius:14px 14px 0 0;
+    font-family:"Zen Maru Gothic";font-weight:900;
+    box-shadow:0 -1px 0 rgba(0,0,0,.04);
+  }
+  .day-tab .dn{
+    background:#fff;color:var(--ember);border-radius:8px;
+    font-size:12px;padding:2px 8px;letter-spacing:.08em;
+  }
+  .day-tab .dd{font-size:17px}
+  .day-tab .dnote{font-size:11.5px;font-weight:500;opacity:.92;letter-spacing:.04em}
+  .day-body{
+    background:#fff;border:1px solid var(--line);border-top:none;
+    border-radius:0 14px 14px 14px;padding:6px 18px 14px;
+    box-shadow:0 10px 24px -18px rgba(11,58,71,.5);
+  }
+  .ev{position:relative;padding:13px 0 13px 30px;border-bottom:1px dashed var(--line)}
+  .ev:last-child{border-bottom:none}
+  .ev::before{
+    content:"";position:absolute;left:5px;top:19px;
+    width:9px;height:9px;border-radius:50%;background:var(--sea);
+    box-shadow:0 0 0 3px var(--foam);
+  }
+  .ev::after{
+    content:"";position:absolute;left:9px;top:28px;bottom:-13px;width:2px;
+    background:repeating-linear-gradient(var(--line) 0 4px,transparent 4px 8px);
+  }
+  .ev:last-child::after{display:none}
+  .ev .t{font-family:"Zen Maru Gothic";font-weight:700;color:var(--ember);font-size:14px;letter-spacing:.03em}
+  .ev .t.free{color:var(--sea)}
+  .ev .h{font-family:"Zen Maru Gothic";font-weight:700;font-size:16px;color:var(--ink);margin:1px 0 2px}
+  .ev .d{font-size:13.5px;color:var(--muted)}
+  .who{display:inline-block;font-size:11px;font-weight:700;font-family:"Zen Maru Gothic";
+    padding:1px 9px;border-radius:999px;margin-right:6px;vertical-align:1.5px;letter-spacing:.04em}
+  .who.all{background:var(--foam);color:var(--sea-deep)}
+  .who.ms{background:#FBE7C8;color:#9A6410}
+  .who.nz{background:#E5E1F4;color:#54479A}
+  .tag-check{display:inline-block;font-size:11px;font-weight:700;color:var(--ember);
+    background:var(--ember-soft);padding:1px 8px;border-radius:6px;margin-left:6px}
+
+  /* ---------- CARDS ---------- */
+  .grid{display:grid;gap:14px}
+  @media(min-width:560px){.grid.two{grid-template-columns:1fr 1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;
+    box-shadow:0 10px 24px -20px rgba(11,58,71,.55)}
+  .card.sand{background:var(--sand)}
+  .card h3{font-family:"Zen Maru Gothic";font-weight:900;font-size:16px;color:var(--ink);
+    display:flex;align-items:center;gap:8px;margin-bottom:11px}
+  .card h3 .ic{font-size:19px;line-height:1}
+  .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:14px}
+  .row:last-child{border-bottom:none}
+  .row .k{color:var(--muted);flex:none}
+  .row .v{text-align:right;font-weight:500}
+  .row .v b{font-family:"Zen Maru Gothic";color:var(--ink)}
+  ul.clean{list-style:none;font-size:14px}
+  ul.clean li{position:relative;padding:5px 0 5px 20px}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:13px;width:7px;height:7px;
+    border-radius:2px;background:var(--sun);transform:rotate(45deg)}
+  ul.clean li b{font-family:"Zen Maru Gothic";color:var(--ink)}
+  .note{background:var(--ember-soft);border-left:4px solid var(--ember);border-radius:0 10px 10px 0;
+    padding:11px 14px;font-size:13px;color:#8a3a20;margin-top:12px}
+  .note b{font-family:"Zen Maru Gothic"}
+  .subline{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+  a.link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--sea-deep);
+    padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;
+    font-size:14px;font-weight:500;margin-bottom:9px;transition:.15s}
+  a.link:hover{border-color:var(--sea);background:var(--foam)}
+  a.link .ar{margin-left:auto;color:var(--ember);font-family:"Zen Maru Gothic";font-weight:900}
+  a.link .lic{font-size:17px}
+
+  .tel{font-family:"Zen Maru Gothic";font-weight:900;font-size:20px;color:var(--ember);letter-spacing:.02em}
+  .tel a{color:inherit;text-decoration:none}
+
+  .foot{text-align:center;margin-top:44px;color:var(--muted);font-size:12px;letter-spacing:.14em}
+  .foot .wv{font-size:20px;color:var(--sea);letter-spacing:.3em}
+
+  .budget-total{background:var(--ink);color:#fff;border-radius:12px;padding:12px 16px;margin-top:12px;
+    display:flex;justify-content:space-between;align-items:center}
+  .budget-total .bl{font-size:12px;color:#BEE7EC;letter-spacing:.1em}
+  .budget-total .bv{font-family:"Zen Maru Gothic";font-weight:900;font-size:20px}
+
+  /* --- 割り勘 warikan --- */
+  .wk-form{display:grid;gap:10px;margin-bottom:16px}
+  .wk-form input,.wk-form select{font-family:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text);width:100%}
+  .wk-form input:focus,.wk-form select:focus{outline:2px solid var(--sea);border-color:var(--sea)}
+  .wk-row2{display:grid;grid-template-columns:1fr 118px;gap:10px}
+  .wk-parts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
+  .wk-parts label{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+  .wk-parts input{width:auto;margin:0}
+  .btn{font-family:"Zen Maru Gothic";font-weight:700;font-size:14px;border:none;border-radius:11px;padding:11px 16px;cursor:pointer;color:#fff;background:var(--sea)}
+  .btn.ember{background:var(--ember)}
+  .btn.ghost{background:#fff;color:var(--sea-deep);border:1px solid var(--line)}
+  .btn:active{transform:translateY(1px)}
+  .wk-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .wk-item:last-child{border-bottom:none}
+  .wk-item .nm{font-family:"Zen Maru Gothic";font-weight:700;color:var(--ink)}
+  .wk-item .meta{font-size:12px;color:var(--muted);margin-top:2px}
+  .wk-item .amt{margin-left:auto;font-family:"Zen Maru Gothic";font-weight:700;white-space:nowrap;color:var(--ink)}
+  .wk-item .del{border:none;background:var(--ember-soft);color:var(--ember);border-radius:8px;width:28px;height:28px;font-size:17px;line-height:1;cursor:pointer;flex:none}
+  .wk-payer{display:inline-block;font-size:11px;font-weight:700;font-family:"Zen Maru Gothic";padding:1px 8px;border-radius:999px;background:var(--foam);color:var(--sea-deep)}
+  .wk-result{background:var(--ink);color:#fff;border-radius:14px;padding:16px;margin-top:16px}
+  .wk-result h4{font-family:"Zen Maru Gothic";font-weight:900;font-size:14px;margin-bottom:8px;color:#BEE7EC;letter-spacing:.04em}
+  .wk-bal{display:flex;justify-content:space-between;font-size:14px;padding:4px 0}
+  .wk-settle{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
+  .wk-settle .s{display:flex;align-items:center;gap:8px;font-family:"Zen Maru Gothic";font-weight:700;font-size:15px;padding:6px 0}
+  .wk-settle .s .a{margin-left:auto;color:var(--sun)}
+  .wk-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+  .wk-total{display:flex;justify-content:space-between;font-size:13px;color:#BEE7EC;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.15)}
+  .wk-copied{font-size:12px;color:var(--sea);font-weight:700}
+
+  @media (prefers-reduced-motion:no-preference){
+    .day,.card,.sec-head{animation:rise .6s both}
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  @media print{
+    body{background:#fff}
+    .hero{background:var(--ink)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .day,.card{box-shadow:none;break-inside:avoid}
+    a.link{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="sun"></div>
+    <div class="hero-eyebrow">IZU · OSHIMA TRIP</div>
+    <h1>伊豆大島<span class="sub">旅のしおり</span></h1>
+    <div class="hero-dates">
+      <span class="pill ember">2026.7.25<span style="font-weight:500">(土)</span> – 7.27<span style="font-weight:500">(月)</span></span>
+      <span class="pill">2泊3日</span>
+      <span class="pill">高速ジェット船</span>
+    </div>
+    <div class="members">
+      <div class="m"><div class="name">みずき</div><div class="role">佐藤瑞樹</div></div>
+      <div class="m"><div class="name">のぞみ</div><div class="role">岩﨑望</div></div>
+      <div class="m"><div class="name">そう</div><div class="role">明山想</div></div>
+    </div>
+    <div class="scape" aria-hidden="true">
+      <svg viewBox="0 0 400 90" preserveAspectRatio="none">
+        <path d="M0 70 L150 20 L165 27 L185 14 L205 30 L260 70 Z" fill="#0E4A46"/>
+        <path d="M150 20 L165 27 L185 14 L205 30 L191 40 L178 33 L168 40 Z" fill="#3B6B62" opacity=".55"/>
+        <path d="M0 62 Q100 46 200 60 T400 58 L400 90 L0 90 Z" fill="#FDFBF3"/>
+        <path d="M0 70 Q100 58 200 70 T400 68 L400 90 L0 90 Z" fill="#FDFBF3" opacity=".65"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ============ TIMELINE ============ -->
+  <section>
+    <div class="sec-head"><span class="no">1</span><h2>行程</h2><span class="en">SCHEDULE</span></div>
+
+    <!-- DAY 1 -->
+    <div class="day">
+      <div class="day-tab"><span class="dn">DAY 1</span><span class="dd">7/25</span><span class="dnote">土曜</span></div>
+      <div class="day-body">
+        <div class="ev">
+          <div class="t">前日入り</div>
+          <div class="h"><span class="who nz">のぞみ</span>24(金)に熱海から前泊</div>
+          <div class="d">土曜の熱海発が遅いため、金曜に前入り。</div>
+        </div>
+        <div class="ev">
+          <div class="t">07:50 → 09:35</div>
+          <div class="h"><span class="who ms">みずき・そう</span>竹芝発 → 大島着</div>
+          <div class="d">高速ジェット船で上陸。到着港は当日朝に決定（元町 or 岡田）。</div>
+        </div>
+        <div class="ev">
+          <div class="t">10:30 ごろ</div>
+          <div class="h">レンタカー：港までお迎え</div>
+          <div class="d">到着港が決まったらレンタカー屋に電話→お迎え（乗船便は連絡済み）。岡田着ならのぞみはバスで岡田へ／元町着なら全員元町で合流→店へ。荷物は車へ（宿はチェックイン前の預かり不可）。</div>
+        </div>
+        <div class="ev">
+          <div class="t">午後（時間はショップ連絡）</div>
+          <div class="h">体験ダイビング 🤿</div>
+          <div class="d">宿泊先まで送迎あり（元町〜岡田エリア）。集合時間は主催ショップから連絡（13:30ごろで調整）。持ち物：ビーサン・水着・タオル。料金支払済。</div>
+        </div>
+        <div class="ev">
+          <div class="t">夕方（15:00〜20:00）</div>
+          <div class="h">宿「島家」にチェックイン</div>
+          <div class="d">到着時間を宿へ事前連絡（時間に合わせてスタッフが来る）。遅れる時は到着30分前までに📞。元町港から徒歩5分・少し奥まった立地。</div>
+        </div>
+        <div class="ev">
+          <div class="t">夜</div>
+          <div class="h">宿でBBQ 🔥</div>
+          <div class="d">機材一式4,500円＋炭代300円/人＋着火剤300円。食材は各自持参。20:30までに片付け。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day">
+      <div class="day-tab"><span class="dn">DAY 2</span><span class="dd">7/26</span><span class="dnote">日曜</span></div>
+      <div class="day-body">
+        <div class="ev">
+          <div class="t free">終日</div>
+          <div class="h">レンタカーで島内観光</div>
+          <div class="d">フリーデー。三原山 → 地層大切断面 → 波浮港 → 動物園（無料）→ 浜の湯（水着必須）が回りやすい黄金ルート（→ 観光候補）。</div>
+        </div>
+        <div class="ev">
+          <div class="t">18:00</div>
+          <div class="h">寿し光で夕食 🍣</div>
+          <div class="d">予約済。元町エリア。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day">
+      <div class="day-tab"><span class="dn">DAY 3</span><span class="dd">7/27</span><span class="dnote">月曜</span></div>
+      <div class="day-body">
+        <div class="ev">
+          <div class="t">10:30</div>
+          <div class="h">レンタカー返却</div>
+          <div class="d">受取から48時間。港まで送りあり。</div>
+        </div>
+        <div class="ev">
+          <div class="t">10:40 → 11:25</div>
+          <div class="h"><span class="who nz">のぞみ</span>大島発 → 熱海着</div>
+        </div>
+        <div class="ev">
+          <div class="t">11:55 → 13:40</div>
+          <div class="h"><span class="who ms">みずき・そう</span>大島発 → 竹芝着</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRANSPORT ============ -->
+  <section>
+    <div class="sec-head"><span class="no">2</span><h2>交通（船・レンタカー）</h2><span class="en">TRANSPORT</span></div>
+    <div class="grid two">
+      <div class="card">
+        <h3><span class="ic">⛴️</span>みずき・そう</h3>
+        <div class="row"><span class="k">往路 7/25</span><span class="v"><b>竹芝 07:50</b> → 大島 09:35</span></div>
+        <div class="row"><span class="k">復路 7/27</span><span class="v"><b>大島 11:55</b> → 竹芝 13:40</span></div>
+        <div class="subline">往復チケット購入済（そうが手配）。</div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">⛴️</span>のぞみ</h3>
+        <div class="row"><span class="k">往路 7/24(金)</span><span class="v">熱海発で<b>前泊入り</b></span></div>
+        <div class="row"><span class="k">復路 7/27</span><span class="v"><b>大島 10:40</b> → 熱海 11:25</span></div>
+        <div class="subline">各自で往復手配済。</div>
+      </div>
+    </div>
+    <div class="note"><b>到着港に注意：</b>波の状況で当日朝に元町港か岡田港かが決まります。メインは元町港（宿すぐ）。岡田港着の場合はバスで元町へ移動（→ リンクの大島バス時刻表）。</div>
+
+    <div class="card sand">
+      <h3><span class="ic">🚗</span>レンタカー（モービルレンタカー）</h3>
+      <div class="row"><span class="k">車 / 期間</span><span class="v">軽自動車（4人乗り）／25(土)10:30〜27(月)10:30</span></div>
+      <div class="row"><span class="k">料金</span><span class="v">48時間 8,800円＋免責2,200円＝<b>11,000円</b></span></div>
+      <div class="row"><span class="k">支払い</span><span class="v"><b>現金のみ</b>（カード不可）</span></div>
+      <div class="row"><span class="k">送迎</span><span class="v">港・空港・宿まで<b>お迎え＆お送りOK</b>（元町・岡田地区限定）</span></div>
+      <div class="note"><b>当日の動き方：</b>朝、東京組の到着港が決まったらレンタカー屋に電話してお迎えを依頼（乗船便は連絡済み）。<br>
+      ・<b>岡田港着</b> → 岡田港でお迎え→店へ。のぞみはバスで岡田港へ合流。<br>
+      ・<b>元町港着</b> → 元町港でお迎え。のぞみも元町港へ来て全員合流→店へ。</div>
+    </div>
+  </section>
+
+  <!-- ============ STAY ============ -->
+  <section>
+    <div class="sec-head"><span class="no">3</span><h2>宿泊</h2><span class="en">STAY</span></div>
+    <div class="card sand">
+      <h3><span class="ic">🏠</span>島家（しまや）－ 古民家一棟貸し －</h3>
+      <div class="row"><span class="k">住所</span><span class="v"><b>大島町元町2-6-19</b></span></div>
+      <div class="row"><span class="k">立地</span><span class="v">元町港から徒歩5分・少し奥まった場所</span></div>
+      <div class="row"><span class="k">連絡先</span><span class="v"><b>090-9100-1421</b>（竹内さん）</span></div>
+      <div class="row"><span class="k">泊数</span><span class="v">7/25・26泊 → 27チェックアウト</span></div>
+      <div class="row"><span class="k">料金</span><span class="v"><b>約17,030円/人</b>（総額 51,091円）</span></div>
+      <div class="row"><span class="k">予約</span><span class="v">のぞみ手配</span></div>
+      <div class="row"><span class="k">チェックイン</span><span class="v"><b>15:00〜20:00</b>／到着時間を事前連絡</span></div>
+      <div class="row"><span class="k">駐車場</span><span class="v">無料。入口が狭く<b>軽推奨</b>（→軽で正解◎）</span></div>
+      <div class="row"><span class="k">アメニティ</span><span class="v">歯ブラシ・バスタオル・シャンプー・リンス・ボディソープ・ドライヤー・衣類洗剤（無料）</span></div>
+      <div class="row"><span class="k">周辺</span><span class="v">徒歩圏にスーパー・温泉あり ♨️</span></div>
+      <div class="note"><b>📞 チェックイン時間は宿へ事前連絡を！</b>スタッフが時間に合わせて宿へ来る方式。連絡がないと希望時間に入れないことも。遅れる場合は到着30分前までに電話。場所が分からなければ元町港の大島観光協会前から案内してくれる。</div>
+      <div class="note"><b>💴 現金を必ず用意！</b>島はATMが少なく現金のみの店も多い・コンビニなし。宿も現金推奨。</div>
+      <div class="note"><b>⚠️ キャンセルは欠航でも料金が発生。</b>ただしチェックイン当日の船・空便が全便欠航なら日程変更で対応可。住宅街の宿なので夜は静かに。</div>
+    </div>
+  </section>
+
+  <!-- ============ ACTIVITIES ============ -->
+  <section>
+    <div class="sec-head"><span class="no">4</span><h2>アクティビティ</h2><span class="en">PLAY</span></div>
+    <div class="grid two">
+      <div class="card">
+        <h3><span class="ic">🤿</span>体験ダイビング</h3>
+        <div class="row"><span class="k">日程</span><span class="v"><b>7/25(土)</b> 確定</span></div>
+        <div class="row"><span class="k">集合時間</span><span class="v"><b>ショップから連絡</b>（13:30ごろで調整）</span></div>
+        <div class="row"><span class="k">集合場所</span><span class="v"><b>宿泊先まで送迎</b>（元町〜岡田エリア）</span></div>
+        <div class="row"><span class="k">料金</span><span class="v"><b>13,000円/人</b>・支払済</span></div>
+        <div class="row"><span class="k">持ち物</span><span class="v">ビーサン・水着・タオル</span></div>
+        <div class="note">当日ショップと連絡がつかない等は asoviewサポート（support@asoview.com／10:00〜19:00）。<br>※asoviewの集合マップは別宿「OKAYADO」を指す表示。実際は宿泊先（島家）まで送迎なので、集合時間・場所は当日ショップに要確認。</div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🔥</span>BBQ（宿にて）</h3>
+        <div class="row"><span class="k">日時</span><span class="v">7/25(土) 夜</span></div>
+        <div class="row"><span class="k">機材一式</span><span class="v"><b>4,500円</b></span></div>
+        <div class="row"><span class="k">炭代</span><span class="v">300円/人</span></div>
+        <div class="row"><span class="k">着火剤</span><span class="v">300円（1袋5個）</span></div>
+        <div class="row"><span class="k">食材</span><span class="v"><b>各自持参</b>（宿の用意なし）</span></div>
+        <div class="subline">20:30までに片付け。悪天候時は中止。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIGHTSEEING ============ -->
+  <section>
+    <div class="sec-head"><span class="no">5</span><h2>観光候補（日曜フリー）</h2><span class="en">SPOTS</span></div>
+
+    <div class="card sand">
+      <h3><span class="ic">🚗</span>おすすめ周遊ルート</h3>
+      <p style="font-size:14px;margin:0">元町を起点に <b>三原山（午前）→ ランチ → 地層大切断面 → 波浮港さんぽ → 大島公園動物園 → 浜の湯で夕日</b> が回りやすい黄金コース。一周道路は約46.6km・車で約1時間なので、寄り道しても無理なく回れます。</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">📍</span>見どころ</h3>
+      <ul class="clean">
+        <li><b>三原山</b>〈絶景・ハイキング〉… 標高758mの活火山「御神火様」。山頂口まで車で上がれ、火口を一周する<b>お鉢めぐり</b>は遊歩道が整備され初心者OK。山頂は日陰なし＆風が超強いので防風アウター＆帽子必須。</li>
+        <li><b>地層大切断面（バウムクーヘン）</b>〈映え〉… 約1.8万年分の噴火が縞模様になった高さ30m・長さ600mの断面。野増地区の一周道路沿い、午後は縞がくっきり。</li>
+        <li><b>波浮港（はぶみなと）</b>〈レトロ〉… 火口湖が港になったノスタルジックな港町。石畳の坂・見晴台・古民家カフェ（Hav Cafe／たい焼きの島京梵天）。沖には奇岩<b>筆島</b>も。</li>
+        <li><b>大島公園動物園</b>〈入園無料〉… レッサーパンダや国内最大級の溶岩サル山。ふれあいは日曜11:00〜11:45。</li>
+        <li><b>浜の湯</b>〈絶景温泉〉… 元町港近くの町営露天。目の前は太平洋、夕日が最高。<b>混浴なので水着必須</b>（ダイビング用の水着が流用できる◎）。</li>
+        <li><b>裏砂漠</b>〈絶景〉… 日本で唯一「砂漠」と名の付く場所。黒い火山砂の荒野。三原山の裏砂漠コースからアクセス。</li>
+        <li><b>泉津の切通し</b>〈映え・パワスポ〉… 巨木の根が両脇にそびえる階段。木漏れ日が幻想的な撮影スポット。</li>
+        <li><b>野田浜／Buddy's Bell</b>〈夕日・海〉… サンセットパームライン沿い。夏は海遊びも。晴れれば富士山も。</li>
+      </ul>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3><span class="ic">🍽️</span>島グルメ</h3>
+        <ul class="clean">
+          <li><b>べっこう寿司</b> … 白身魚を青唐辛子醤油に漬けたピリ辛の名物</li>
+          <li><b>明日葉の天ぷら</b> … 島の定番</li>
+          <li><b>くさや／島焼酎</b> … クセになる島の味</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🎁</span>お土産</h3>
+        <ul class="clean">
+          <li><b>椿油</b> … 美容に人気の特産</li>
+          <li><b>明日葉そば</b></li>
+          <li><b>バウムクーヘン</b> … 地層断面にちなんだ島銘菓</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note"><b>7月メモ：</b>椿の見頃は1〜3月なので今回は時期外（夏は海・温泉・三原山がメイン）。店は早じまい＆現金中心なので、ランチ・夕食は時間と支払い方法に注意。コンビニなし・24時間自販機「メルシー」が元町／波浮に。三原山は風対策を忘れずに。</div>
+  </section>
+
+  <!-- ============ PACKING ============ -->
+  <section>
+    <div class="sec-head"><span class="no">6</span><h2>持ち物</h2><span class="en">PACKING</span></div>
+    <div class="card sand">
+      <ul class="clean">
+        <li><b>💴 現金（多めに）</b> … 島は現金社会。宿も現金推奨。</li>
+        <li><b>ダイビング用</b> … ビーサン／水着／タオル</li>
+        <li><b>BBQの食材</b> … 宿の用意なし。事前に買い出し or 島のスーパーで（店は19時頃閉店）</li>
+        <li>日焼け止め・酔い止め・着替え・充電器</li>
+        <li>健康保険証（ダイビングの安心用）</li>
+      </ul>
+      <div class="note"><b>宿のアメニティは完備！</b>歯ブラシ・バスタオル・シャンプー・リンス・ボディソープ・ドライヤー・衣類洗剤は無料。この辺りは持って行かなくてOK。</div>
+    </div>
+  </section>
+
+  <!-- ============ RESTAURANT / CONTACT ============ -->
+  <section>
+    <div class="sec-head"><span class="no">7</span><h2>お店・連絡先</h2><span class="en">CONTACT</span></div>
+    <div class="grid two">
+      <div class="card">
+        <h3><span class="ic">🍣</span>寿し光　<span style="font-weight:500;font-size:12px;color:var(--sea);background:var(--foam);padding:2px 8px;border-radius:6px">日 18:00 予約済</span></h3>
+        <div class="tel"><a href="tel:0499220888">04992-2-0888</a></div>
+        <div class="subline">大島町元町1-4-7</div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🏠</span>島家（宿）　<span style="font-weight:500;font-size:12px;color:var(--ember);background:var(--ember-soft);padding:2px 8px;border-radius:6px">竹内さん</span></h3>
+        <div class="tel"><a href="tel:09091001421">090-9100-1421</a></div>
+        <div class="subline">大島町元町2-6-19 ／ チェックイン時間は事前連絡</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUDGET ============ -->
+  <section>
+    <div class="sec-head"><span class="no">8</span><h2>予算メモ（1人あたり概算）</h2><span class="en">BUDGET</span></div>
+    <div class="card">
+      <div class="row"><span class="k">宿（2泊）</span><span class="v"><b>約 17,030円</b></span></div>
+      <div class="row"><span class="k">レンタカー</span><span class="v">約 3,700円（11,000円 ÷3）</span></div>
+      <div class="row"><span class="k">ダイビング</span><span class="v">13,000円</span></div>
+      <div class="row"><span class="k">BBQ</span><span class="v">約 1,900円（機材4,500＋炭・着火剤 ÷3）＋食材</span></div>
+      <div class="budget-total"><span class="bl">小計（船代・寿司・食材・お土産は別）</span><span class="bv">約 36,000円</span></div>
+      <div class="subline">※ レンタカーは 48時間 8,800円＋免責2,200円＝11,000円。免責補償は加入済。</div>
+    </div>
+  </section>
+
+  <!-- ============ WARIKAN ============ -->
+  <section>
+    <div class="sec-head"><span class="no">9</span><h2>割り勘 精算</h2><span class="en">SETTLE</span></div>
+    <div class="card">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 14px">支払った項目を入れると、誰が誰にいくら払えばいいか自動計算します。立替者は<b>タップで変更</b>／不要な行は × で削除。船・ダイビングなど各自払い済みのものは入れなくてOK。<br>※データは開いた端末に保存されます。1人が入力して「結果をコピー」でLINEに貼るのがおすすめ。</p>
+
+      <div class="wk-form">
+        <input id="wkName" type="text" placeholder="項目名（例：寿し光、ガソリン、お土産）">
+        <div class="wk-row2">
+          <select id="wkPayer"></select>
+          <input id="wkAmount" type="number" inputmode="numeric" placeholder="金額">
+        </div>
+        <div class="wk-parts" id="wkParts"></div>
+        <button class="btn" onclick="wkAdd()">＋ 追加する</button>
+      </div>
+
+      <div id="wkList"></div>
+      <div class="wk-result" id="wkResult"></div>
+
+      <div class="wk-actions">
+        <button class="btn ember" onclick="wkCopy()">結果をコピー</button>
+        <button class="btn ghost" onclick="wkReset()">リセット</button>
+        <span class="wk-copied" id="wkCopied"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LINKS ============ -->
+  <section>
+    <div class="sec-head"><span class="no">10</span><h2>リンク集</h2><span class="en">LINKS</span></div>
+    <a class="link" href="https://tabelog.com/tokyo/A1331/A133101/13039244/" target="_blank" rel="noopener">
+      <span class="lic">🍣</span>寿し光（食べログ）<span class="ar">›</span></a>
+    <a class="link" href="http://www.oshima-bus.com/files/260612_jikoku.pdf" target="_blank" rel="noopener">
+      <span class="lic">🚌</span>大島バス 時刻表（PDF）<span class="ar">›</span></a>
+    <a class="link" href="https://maps.app.goo.gl/D6LHXW3U7ZxMP1yd9" target="_blank" rel="noopener">
+      <span class="lic">🤿</span>ダイビング集合マップ（asoview表示・OKAYADO）<span class="ar">›</span></a>
+    <a class="link" href="https://www.tokaikisen.co.jp/island/oshima/" target="_blank" rel="noopener">
+      <span class="lic">⛴️</span>東海汽船・大島観光ガイド<span class="ar">›</span></a>
+  </section>
+
+  <div class="foot">
+    <div class="wv">〜 〜 〜</div>
+    最高の夏にしよう！<br>IZU · OSHIMA 2026.07
+  </div>
+
+</div>
+<script>
+(function(){
+  const MEMBERS=["みずき","のぞみ","そう"];
+  const KEY="oshima_warikan_v1";
+  const DEFAULTS=[
+    {id:1,name:"宿泊（島家 2泊）",amount:51091,payer:"のぞみ",parts:MEMBERS.slice()},
+    {id:2,name:"レンタカー（48h＋免責）",amount:11000,payer:"みずき",parts:MEMBERS.slice()},
+    {id:3,name:"BBQ一式（機材＋炭＋着火剤）",amount:5700,payer:"みずき",parts:MEMBERS.slice()}
+  ];
+  let expenses=load()||JSON.parse(JSON.stringify(DEFAULTS));
+
+  function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(expenses));}catch(e){}}
+  const yen=n=>"¥"+Math.round(n).toLocaleString("ja-JP");
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  const payerSel=document.getElementById("wkPayer");
+  MEMBERS.forEach(m=>{const o=document.createElement("option");o.value=m;o.textContent=m+" が払った";payerSel.appendChild(o);});
+  const partsBox=document.getElementById("wkParts");
+  partsBox.innerHTML='<span>割る人：</span>'+MEMBERS.map(m=>`<label><input type="checkbox" value="${m}" checked> ${m}</label>`).join("");
+
+  function calc(){
+    const bal={};MEMBERS.forEach(m=>bal[m]=0);let total=0;
+    expenses.forEach(e=>{total+=e.amount;const ps=e.parts&&e.parts.length?e.parts:MEMBERS;const share=e.amount/ps.length;bal[e.payer]+=e.amount;ps.forEach(p=>{bal[p]-=share;});});
+    return {bal,total};
+  }
+  function settle(bal){
+    let cr=[],db=[];
+    MEMBERS.forEach(m=>{const v=Math.round(bal[m]);if(v>0)cr.push({name:m,amt:v});else if(v<0)db.push({name:m,amt:-v});});
+    let res=[],i=0,j=0;
+    while(i<db.length&&j<cr.length){const pay=Math.min(db[i].amt,cr[j].amt);if(pay>0)res.push({from:db[i].name,to:cr[j].name,amt:pay});db[i].amt-=pay;cr[j].amt-=pay;if(db[i].amt===0)i++;if(cr[j].amt===0)j++;}
+    return res;
+  }
+  function render(){
+    const list=document.getElementById("wkList");list.innerHTML="";
+    if(!expenses.length)list.innerHTML='<p style="font-size:13px;color:var(--muted);padding:8px 0">まだ項目がありません。上から追加してください。</p>';
+    expenses.forEach(e=>{
+      const div=document.createElement("div");div.className="wk-item";
+      div.innerHTML=`<div><div class="nm">${esc(e.name)}</div><div class="meta"><span class="wk-payer" title="タップで立替者を変更">${e.payer}立替</span> ・ ${e.parts.length}人で割る</div></div><div class="amt">${yen(e.amount)}</div><button class="del" title="削除">×</button>`;
+      div.querySelector(".del").onclick=()=>{expenses=expenses.filter(x=>x.id!==e.id);save();render();};
+      const pe=div.querySelector(".wk-payer");pe.style.cursor="pointer";
+      pe.onclick=()=>{const idx=MEMBERS.indexOf(e.payer);e.payer=MEMBERS[(idx+1)%MEMBERS.length];save();render();};
+      list.appendChild(div);
+    });
+    const {bal,total}=calc();const res=settle(bal);const per=total/MEMBERS.length;
+    let h=`<div class="wk-total"><span>支出合計</span><span>${yen(total)}（平均 ${yen(per)}/人）</span></div>`;
+    h+='<h4>各自の収支</h4>';
+    MEMBERS.forEach(m=>{const v=Math.round(bal[m]);const t=v>0?("+"+yen(v)+" 受取"):(v<0?(yen(v)+" 支払"):"±0");h+=`<div class="wk-bal"><span>${m}</span><span>${t}</span></div>`;});
+    h+='<div class="wk-settle"><h4>精算方法</h4>';
+    if(!res.length)h+='<div class="s">精算なし（きれいに割れています）</div>';
+    else res.forEach(r=>{h+=`<div class="s"><span>${r.from}</span><span>→</span><span>${r.to}</span><span class="a">${yen(r.amt)}</span></div>`;});
+    h+='</div>';
+    document.getElementById("wkResult").innerHTML=h;
+  }
+  window.wkAdd=function(){
+    const amount=parseFloat(document.getElementById("wkAmount").value);
+    if(!amount||amount<=0){alert("金額を入力してください");return;}
+    const name=document.getElementById("wkName").value.trim()||"（項目）";
+    const payer=document.getElementById("wkPayer").value;
+    const parts=[].slice.call(partsBox.querySelectorAll("input:checked")).map(c=>c.value);
+    if(!parts.length){alert("割る人を1人以上選んでください");return;}
+    expenses.push({id:Date.now(),name,amount,payer,parts});save();render();
+    document.getElementById("wkName").value="";document.getElementById("wkAmount").value="";
+  };
+  window.wkReset=function(){if(confirm("入力をすべて消して初期状態に戻します。よろしいですか？")){expenses=JSON.parse(JSON.stringify(DEFAULTS));save();render();}};
+  window.wkCopy=function(){
+    const {bal,total}=calc();const res=settle(bal);const per=total/MEMBERS.length;
+    let t="【伊豆大島 割り勘精算】\n支出合計 "+yen(total)+"（平均 "+yen(per)+"/人）\n\n";
+    expenses.forEach(e=>{t+="・"+e.name+" "+yen(e.amount)+"（"+e.payer+"立替）\n";});
+    t+="\n▼精算\n";
+    if(!res.length)t+="精算なし（きれいに割れています）\n";
+    else res.forEach(r=>{t+="・"+r.from+" → "+r.to+" "+yen(r.amt)+"\n";});
+    const done=()=>{const c=document.getElementById("wkCopied");c.textContent="コピーしました！";setTimeout(()=>{c.textContent="";},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done).catch(()=>fb(t,done));
+    else fb(t,done);
+  };
+  function fb(t,done){const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");done();}catch(e){alert(t);}document.body.removeChild(ta);}
+  render();
+})();
+</script>
+</body>
+</html>
