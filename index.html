@@ -9,6 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
 <style>
   :root{
     --ink:#0B3A47;
@@ -217,6 +220,18 @@
   .wk-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
   .wk-total{display:flex;justify-content:space-between;font-size:13px;color:#BEE7EC;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.15)}
   .wk-copied{font-size:12px;color:var(--sea);font-weight:700}
+
+  /* ---------- STICKY BUTTON ---------- */
+  .sticky-btn{
+    position:fixed;bottom:16px;right:16px;z-index:999;
+    background:var(--ember);color:#fff;border:none;border-radius:999px;
+    padding:14px 20px;font-family:"Zen Maru Gothic";font-weight:700;font-size:15px;
+    box-shadow:0 4px 12px rgba(232,98,60,.3);cursor:pointer;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .sticky-btn:active{transform:scale(.95)}
+  .sticky-btn:hover{box-shadow:0 6px 16px rgba(232,98,60,.4)}
+  @media print{.sticky-btn{display:none}}
 
   @media (prefers-reduced-motion:no-preference){
     .day,.card,.sec-head{animation:rise .6s both}
@@ -515,7 +530,7 @@
   </section>
 
   <!-- ============ WARIKAN ============ -->
-  <section>
+  <section id="warikan">
     <div class="sec-head"><span class="no">9</span><h2>割り勘 精算</h2><span class="en">SETTLE</span></div>
     <div class="card">
       <p style="font-size:13px;color:var(--muted);margin:0 0 14px">支払った項目を入れると、誰が誰にいくら払えばいいか自動計算します。立替者は<b>タップで変更</b>／不要な行は × で削除。船・ダイビングなど各自払い済みのものは入れなくてOK。<br>※データは開いた端末に保存されます。1人が入力して「結果をコピー」でLINEに貼るのがおすすめ。</p>
@@ -598,15 +613,40 @@ if(document.getElementById('map')){
 (function(){
   const MEMBERS=["みずき","のぞみ","そう"];
   const KEY="oshima_warikan_v1";
+  const DB_KEY="expenses";
   const DEFAULTS=[
     {id:1,name:"宿泊（島家 2泊）",amount:51091,payer:"のぞみ",parts:MEMBERS.slice()},
-    {id:2,name:"レンタカー（48h＋免責）",amount:11000,payer:"みずき",parts:MEMBERS.slice()},
-    {id:3,name:"BBQ一式（機材＋炭＋着火剤）",amount:5700,payer:"みずき",parts:MEMBERS.slice()}
+    {id:2,name:"レンタカー（48h＋免責）",amount:11000,payer:"そう",parts:MEMBERS.slice()},
+    {id:3,name:"BBQ一式（機材＋炭＋着火剤）",amount:4500,payer:"のぞみ",parts:MEMBERS.slice()},
+    {id:4,name:"体験ダイビング 3人分",amount:39000,payer:"みずき",parts:MEMBERS.slice()}
   ];
-  let expenses=load()||JSON.parse(JSON.stringify(DEFAULTS));
+  let expenses=JSON.parse(JSON.stringify(DEFAULTS));
+  let isInitialized=false;
+
+  // Firebase リアルタイム同期 - Firebase準備完了を待つ
+  function setupFirebase(){
+    if(!window.db) {
+      setTimeout(setupFirebase, 100);  // 100msごとに再試行
+      return;
+    }
+    window.db.ref(DB_KEY).on('value',snapshot=>{
+      const data=snapshot.val();
+      if(data){
+        expenses=data;
+        if(isInitialized)render();
+      }
+    });
+  }
+  setupFirebase();
 
   function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(expenses));}catch(e){}}
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify(expenses));}catch(e){}
+    // Firebase に同期
+    if(window.db) {
+      window.db.ref(DB_KEY).set(expenses).catch(e=>console.log("Firebase save error:",e));
+    }
+  }
   const yen=n=>"¥"+Math.round(n).toLocaleString("ja-JP");
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -672,7 +712,32 @@ if(document.getElementById('map')){
   };
   function fb(t,done){const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");done();}catch(e){alert(t);}document.body.removeChild(ta);}
   render();
+  isInitialized=true;  // Firebase リアルタイム同期を有効化
 })();
 </script>
+
+<!-- Firebase Initialize -->
+<script>
+// Firebase Configuration - initialized after SDK load
+const firebaseConfig = {
+  apiKey: "AIzaSyCWZrCzQWSDIbY6u_9Zz4Obg7hjc_I-HoM",
+  authDomain: "oshima-shiori.firebaseapp.com",
+  databaseURL: "https://oshima-shiori-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "oshima-shiori",
+  storageBucket: "oshima-shiori.firebasestorage.app",
+  messagingSenderId: "898824321863",
+  appId: "1:898824321863:web:e9cd7cc44b7f1938246a62"
+};
+
+// Initialize Firebase
+if(typeof firebase !== 'undefined') {
+  firebase.initializeApp(firebaseConfig);
+  window.db = firebase.database();
+}
+</script>
+
+<!-- Sticky Warikan Button -->
+<button class="sticky-btn" onclick="document.getElementById('warikan').scrollIntoView({behavior:'smooth'})">🧮 割り勘</button>
+
 </body>
 </html>
